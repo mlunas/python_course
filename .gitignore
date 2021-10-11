@@ -129,6 +129,5 @@ dmypy.json
 .pyre/
 
 # Test files
-test_files/
 *.xls
 *.docx
