@@ -16,7 +16,8 @@ def merge_mut_type_freqs(infile,outdir):
         pass
     else:
         outdir=str(outdir)+"/"
-    
+ 
+    # Merge all mutation frequencies files into a single output file: 
     for filename in infile:
         with open(filename) as f, open(outdir+outfilename, 'a') as g:
             for line in f:

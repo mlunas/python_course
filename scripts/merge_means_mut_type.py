@@ -8,8 +8,11 @@ def merge_means_mut_type(infile,outdir):
     afsubs, aftranst, aftransv, afdelt, afinst, afN, propsubs, proptranst, proptransv, propdelt, propinst, propN, ratesubs, ratetranst, ratetransv, ratedelt, rateinst, rateN, cfreqsubs, cfreqtranst, cfreqtransv, cfreqdelt, cfreqinst, cfreqN, lines, newlines, name = ([] for i in range(27))
     n=m=0
     
+    #Fix the output file name:
     outfilename=outdir+"mutation_types_stats_merged.xls"
     file=infile
+    
+    #For each sample, compare the sample name to the previous one, if it is the same, consider as a technical replicate. Calculate the average and SD for technical replicates:
     with open(file) as f:
         line1=f.readline()
         parts=line1.split('-')

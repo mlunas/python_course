@@ -8,14 +8,17 @@ def merge_errors(infile,outdir):
     lines=newlines=name=value=[]
     n,m,fn,sample_name=[-1,1,1,""]
     file=infile[0]
+    
+    #Fix output directory name:
     if outdir=="None":
         outdir=""
     else:
-        if outdir[-1]=="/" or outdir[-1]=="\\":
+        if outdir[-1]=="/":
             outdir=outdir[:-1]
 
     outfilename=outdir+"/merged_errors.xls"
-    #Open the first file, extract the...
+    
+    #Open the first file, extract the header, save it to outputfile:
     with open(file) as f:
         line1=f.readline()
         parts=line1.split('\t')
@@ -30,7 +33,8 @@ def merge_errors(infile,outdir):
             parts=line.split('\t')
             with open(outfilename, 'a') as g:
                 g.write(parts[2]+'\t'+parts[3]+'\t'+parts[4]+'\n')
-                                    
+    
+    #Extract all the non-consensus reads, calculate total numer of errors and save to the output file:                                
     for filename in infile:
         with open(filename) as f:
             if "/" in filename:
