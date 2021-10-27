@@ -10,13 +10,13 @@ def merge_coverage(infile,outdir):
     file=infile[0]
     
     # Fixing the format for the output directory:
-    if outdir=="None":
+    if outdir is None:
         outdir=""
     else:
-        if outdir[-1]=="/":
-            outdir=outdir[:-1]
+        if outdir[-1]!="/":
+            outdir+="/"
 
-    outfilename= outdir+"/merged_coverages.xls"
+    outfilename= outdir+"merged_coverages.xls"
     
     #Open the first file, extract the header and save the needed values to the first line of the merged file:
     with open(file) as f:
@@ -75,8 +75,7 @@ if __name__=='__main__':
     def parseArgs():
         parser=argparse.ArgumentParser(description="Merge error absolute frequencies ")
         parser.add_argument('-i','--infile',dest='infile',help='Path to input file',nargs='+',required=True)
-        parser.add_argument('-o','--outdir',dest='outdir',help='Path to the output directory',required=True)
-        parser=argparse.ArgumentParser(description="Merge error absolute frequencies ")
+        parser.add_argument('-o','--outdir',dest='outdir',help='Path to the output directory',required=False)
         args=parser.parse_args(sys.argv[1:])
         return(args)
 
